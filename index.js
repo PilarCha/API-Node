@@ -56,6 +56,18 @@ app.get('/update/:id/:name' , function(req,res) {
 })
 
 // TODO: DELETE
+app.get('/del/:id', function(req,res) {
+  db.serialize(() => {
+    db.run('DELETE from emp where id = ?', [req.params.id], function(err) {
+      if(err) {
+        res.send("Error encountered while deleting");
+        return console.error(err.message);
+      }
+      res.send("Entry Deleted successfully");
+      console.log('Entry Deleted successfully');
+    })
+  })
+})
 
 
 
