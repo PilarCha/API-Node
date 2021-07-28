@@ -14,6 +14,14 @@ app.get('/', function(req,res) {
   res.send("<h3> Hi there, You are going to perform CRUD operations.........<br>[CREATE] Please enter 'http://localhost:3000/add/(id number)/(name)' to add new employee to the database.........................<br>[READ] 'http://localhost:3000/view/(id number)' to view an employee.........................<br>[UPDATE] 'http://localhost:3000/update/(id number)/(new name)' to update an employee.....................<br>[DELETE] 'http://localhost:3000/del/(id number)' to delete an employee...............................<BR>Before closing this window, kindly enter 'http://localhost:3000/close' to close the database connection <h3>");
 })
 
+// TODO: CREATE
+
+// TODO: READ
+
+// TODO: UPDATE
+
+// TODO: DELETE
+
 
 
 server.listen(3000,function() {
