@@ -42,6 +42,18 @@ app.get('/view/:id', function(req,res) {
 })
 
 // TODO: UPDATE
+app.get('/update/:id/:name' , function(req,res) {
+  db.serialize(() => {
+    db.run('UPDATE emp SET name = ? Where id = ?', [req.params.name,req.params.id], function(err) {
+      if(err) {
+        res.send("Error endountered while updating");
+        return console.error(err.message)
+      }
+      res.send("entry updated successfully");
+      console.log('Entry updated successfully');
+    })
+  })
+})
 
 // TODO: DELETE
 
