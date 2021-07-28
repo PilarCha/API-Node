@@ -28,6 +28,18 @@ app.get('/add/:id/:name', function(req,res) {
 })
 
 // TODO: READ
+app.get('/view/:id', function(req,res) {
+  db.serialize(() => {
+    db.each('SELECT id ID, name NAME from emp WHERE id = ?', [req.params.id], function(err,row) {
+      if(err) {
+        res.send('Error encountered while displaying');
+        return console.error(err.message)
+      }
+      res.send(` ID: ${row.ID},  Name: ${row.NAME}`);
+      console.log("Entry displayed successfully")
+    })
+  })
+})
 
 // TODO: UPDATE
 
