@@ -42,15 +42,14 @@ app.get('/view/:id', function(req,res) {
 })
 
 // READ ALL
-
-app.get('/view/all', function(req,res) {
+app.get('/view/all', function(res) {
   db.serialize(() => {
     db.each('Select id ID, name Name FROM EMP' , function(err,row) {
       if(err) {
         res.send("Error trying to display all");
         return console.error(err.message);
       }
-      res.send(`${row}`);
+      // res.send(`${row}`);
       console.log('successfully displayed all')
     })
   })
