@@ -10,16 +10,16 @@ const db = new sqlite3.Database('./database/employee.db');
 
 db.run('CREATE TABLE IF NOT EXISTS emp(id TEXT, name TEXT)');
 
-app.get('/', function(req,res) {
+app.get('/', (req,res) => {
   res.send("<h3> Hi there, You are going to perform CRUD operations.........<br>[CREATE] Please enter 'http://localhost:3000/add/(id number)/(name)' to add new employee to the database.........................<br>[READ] 'http://localhost:3000/view/(id number)' to view an employee.........................<br>[UPDATE] 'http://localhost:3000/update/(id number)/(new name)' to update an employee.....................<br>[DELETE] 'http://localhost:3000/del/(id number)' to delete an employee...............................<BR>Before closing this window, kindly enter 'http://localhost:3000/close' to close the database connection <h3>");
 })
 
 // Serialize = 1 statement can execute at a time. Queue will form if its multiple requests
-app.get('/add/:id/:name', function(req,res) {
+app.get('/add/:id/:name', (req,res) => {
   db.serialize(() => {
-    db.run('INSERT INTO emp(id,name) VALUES(?,?)', [req.params.id,req.params.name], function(err) {
+    db.run('INSERT INTO emp(id,name) VALUES(?,?)', [req.params.id,req.params.name], (err) => {
       if(err) {
-        return console.log(err.message);
+        console.log(err.message);
       }
       console.log("New Employee has been added");
       res.send(`New Employee has been added into the database with ID = ${req.params.id} and Name = ${req.params.name}`)
@@ -28,12 +28,12 @@ app.get('/add/:id/:name', function(req,res) {
 })
 
 // TODO: READ
-app.get('/view/:id', function(req,res) {
+app.get('/view/:id', (req,res) => {
   db.serialize(() => {
-    db.each('SELECT id ID, name NAME from emp WHERE id = ?', [req.params.id], function(err,row) {
+    db.each('SELECT id ID, name NAME from emp WHERE id = ?', [req.params.id], (err,row) => {
       if(err) {
         res.send('Error encountered while displaying');
-        return console.error(err.message)
+        console.error(err.message)
       }
       res.send(` ID: ${row.ID},  Name: ${row.NAME}`);
       console.log("Entry displayed successfully")
@@ -42,26 +42,39 @@ app.get('/view/:id', function(req,res) {
 })
 
 // READ ALL
-app.get('/view/all', function(res) {
+// app.get('/view/all', function(req,res) {
+//   db.serialize(() => {
+//     db.each('Select * FROM emp' , (err,row) => {
+//       if(err) {
+//         res.send("Error trying to display all");
+//         return console.error(err.message);
+//       }
+//       return console.log(`${row.name}`)
+//       // res.send(`${row}`);
+//       console.log('successfully displayed all')
+//     })
+//   })
+// })
+app.get('/view/all/:id', (req,res) => {
   db.serialize(() => {
-    db.each('Select id ID, name Name FROM EMP' , function(err,row) {
+    db.all('SELECT id ID, name NAME from emp', (err,row) => {
       if(err) {
-        res.send("Error trying to display all");
-        return console.error(err.message);
+        res.send('Error encountered while displaying');
+        console.error(err.message)
       }
-      // res.send(`${row}`);
-      console.log('successfully displayed all')
+      res.send(` ID: ${row.ID},  Name: ${row.NAME}`);
+      console.log("Entry displayed successfully")
     })
   })
 })
 
 // TODO: UPDATE
-app.get('/update/:id/:name' , function(req,res) {
+app.get('/update/:id/:name' , (req,res) => {
   db.serialize(() => {
-    db.run('UPDATE emp SET name = ? Where id = ?', [req.params.name,req.params.id], function(err) {
+    db.run('UPDATE emp SET name = ? Where id = ?', [req.params.name,req.params.id], (err) => {
       if(err) {
         res.send("Error endountered while updating");
-        return console.error(err.message)
+        console.error(err.message)
       }
       res.send("entry updated successfully");
       console.log('Entry updated successfully');
@@ -70,12 +83,12 @@ app.get('/update/:id/:name' , function(req,res) {
 })
 
 // TODO: DELETE
-app.get('/del/:id', function(req,res) {
+app.get('/del/:id', (req,res) => {
   db.serialize(() => {
-    db.run('DELETE from emp where id = ?', [req.params.id], function(err) {
+    db.run('DELETE from emp where id = ?', [req.params.id], (err) => {
       if(err) {
         res.send("Error encountered while deleting");
-        return console.error(err.message);
+        console.error(err.message);
       }
       res.send("Entry Deleted successfully");
       console.log('Entry Deleted successfully');
