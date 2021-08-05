@@ -49,11 +49,7 @@ app.get('/all', (req,res) => {
         res.send('Error encountered while displaying');
         console.error(err.message)
       }
-      let str = ""
-      for(let i = 0; i<row.length; i++) {
-        str +=(`ID num ${row[i].id} and name is ${row[i].name} <br>`)
-      }
-      res.send(str)
+      res.json(row)
       console.log("Entry displayed successfully")
     })
   })
