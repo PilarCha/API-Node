@@ -1,21 +1,34 @@
 import React from "react";
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('/view/all')
+    fetch("/all")
       .then((res) => res.json())
-      .then((data) => setData(data.message))
+      .then((data) => setData(data));
   }, []);
 
   return (
-    <div className = "App">
-      <header className = "App-header">
-        <img src={logo} className = "App-logo" alt="logo"/>
-        <p> {!data ? "Loading..." : data}</p>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(stuff => (
+            <tr key={stuff.ID}>
+              <td key = {1}> {stuff.ID} </td>
+              <td key = {2}> {stuff.NAME} </td>
+            </tr>
+          ))}
+        </tbody>
       </header>
     </div>
   );
