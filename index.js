@@ -42,19 +42,6 @@ app.get('/view/:id', (req,res) => {
 })
 
 // READ ALL
-// app.get('/view/all', function(req,res) {
-//   db.serialize(() => {
-//     db.each('Select * FROM emp' , (err,row) => {
-//       if(err) {
-//         res.send("Error trying to display all");
-//         return console.error(err.message);
-//       }
-//       return console.log(`${row.name}`)
-//       // res.send(`${row}`);
-//       console.log('successfully displayed all')
-//     })
-//   })
-// })
 app.get('/all', (req,res) => {
   db.serialize(() => {
     db.all('SELECT * from emp WHERE id IS NOT NULL', (err,row) => {
@@ -62,8 +49,11 @@ app.get('/all', (req,res) => {
         res.send('Error encountered while displaying');
         console.error(err.message)
       }
-      res.send(` ID: ${row.ID},  Name: ${row.NAME}`);
-      console.log(row)
+      let str = ""
+      for(let i = 0; i<row.length; i++) {
+        str +=(`ID num ${row[i].id} and name is ${row[i].name} <br>`)
+      }
+      res.send(str)
       console.log("Entry displayed successfully")
     })
   })
