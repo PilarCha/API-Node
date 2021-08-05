@@ -6,7 +6,7 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app);
-const db = new sqlite3.Database('./database/employee.db');
+const db = new sqlite3.Database('../database/employee.db');
 
 db.run('CREATE TABLE IF NOT EXISTS emp(id TEXT, name TEXT)');
 
