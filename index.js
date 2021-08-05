@@ -55,14 +55,15 @@ app.get('/view/:id', (req,res) => {
 //     })
 //   })
 // })
-app.get('/view/all/:id', (req,res) => {
+app.get('/all', (req,res) => {
   db.serialize(() => {
-    db.all('SELECT id ID, name NAME from emp', (err,row) => {
+    db.all('SELECT * from emp WHERE id IS NOT NULL', (err,row) => {
       if(err) {
         res.send('Error encountered while displaying');
         console.error(err.message)
       }
       res.send(` ID: ${row.ID},  Name: ${row.NAME}`);
+      console.log(row)
       console.log("Entry displayed successfully")
     })
   })
