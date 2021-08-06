@@ -1,6 +1,8 @@
-import React from "react";
+// import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import * as React from 'react';
+import { DataGrid } from '@material-ui/data-grid';
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -10,6 +12,8 @@ function App() {
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
+
+
   if(!data) {
     return  (
       <div className="App">
@@ -20,11 +24,25 @@ function App() {
       </div>
     )
   }
-
+  const columns = [
+    {field:'id', headerName:'ID', width:90},
+    {field:'Name', headerName:'name', width:150, editable:true},
+  ]
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={5}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
+
           <thead>
             <tr>
               <th>ID</th>
@@ -39,6 +57,7 @@ function App() {
               </tr>
             ))}
           </tbody>
+
       </header>
     </div>
   );
