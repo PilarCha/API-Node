@@ -24,7 +24,7 @@ function App() {
       </div>
     )
   }
-  const columns = [    
+  const columns = [
     {field:'id', headerName:'ID', width:90},
     {field:'name', headerName:'NAME', width:150, editable:true},
   ]
@@ -33,31 +33,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
-        <div style={{ height: 400, width: '100%' }}>
+        <div style={{ height: 300, width: '100%' }}>
           <DataGrid
             rows={data}
             columns={columns}
-            pageSize={5}
+            pageSize={2}
             checkboxSelection
             disableSelectionOnClick
           />
         </div>
-
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(stuff => (
-              <tr key={stuff.id}>
-                <td key = {1}> {stuff.id} </td>
-                <td key = {2}> {stuff.name} </td>
-              </tr>
-            ))}
-          </tbody>
-
       </header>
     </div>
   );
