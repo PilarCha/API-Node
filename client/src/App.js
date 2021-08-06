@@ -13,17 +13,6 @@ function App() {
       .then((data) => setData(data));
   }, []);
 
-
-  if(!data) {
-    return  (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Loaddddddiiinggg....</p>
-        </header>
-      </div>
-    )
-  }
   const columns = [
     {field:'id', headerName:'ID', width:90},
     {field:'name', headerName:'NAME', width:150, editable:true},
@@ -32,15 +21,19 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
         <div style={{ height: 300, width: '100%' }}>
-          <DataGrid
-            rows={data}
-            columns={columns}
-            pageSize={2}
-            checkboxSelection
-            disableSelectionOnClick
-          />
+          {data ? (
+            <DataGrid
+              rows={data}
+              columns={columns}
+              pageSize={2}
+              checkboxSelection
+              disableSelectionOnClick
+            />
+          ) :(
+            <p> Loadiiiing </p>
+          )}
+
         </div>
       </header>
     </div>
