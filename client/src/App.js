@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -16,26 +17,26 @@ function App() {
   const columns = [
     {field:'id', headerName:'ID', width:90},
     {field:'name', headerName:'NAME', width:150, editable:true},
+    {field:'delete', headerName:'Delete', width:120},
+
   ]
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div style={{ height: 300, width: '100%' }}>
-          {data ? (
-            <DataGrid
-              rows={data}
-              columns={columns}
-              pageSize={2}
-              checkboxSelection
-              disableSelectionOnClick
-            />
-          ) :(
-            <p> Loadiiiing </p>
-          )}
-
-        </div>
       </header>
+      <div style={{ height: 300, width: '100%' }}>
+        {data ? (
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={7}
+          />
+        ) : (
+          <p> Loadiiiing </p>
+        )}
+
+      </div>
     </div>
   );
 }
