@@ -24,9 +24,9 @@ function App() {
       </div>
     )
   }
-  const columns = [
+  const columns = [    
     {field:'id', headerName:'ID', width:90},
-    {field:'Name', headerName:'name', width:150, editable:true},
+    {field:'name', headerName:'NAME', width:150, editable:true},
   ]
   return (
     <div className="App">
