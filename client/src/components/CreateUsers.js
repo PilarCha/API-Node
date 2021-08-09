@@ -7,11 +7,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '25ch',
-  },
 }));
 
 function CreateUsers() {
@@ -22,7 +17,9 @@ function CreateUsers() {
       <div>
         <TextField
           label="Users ID"
-          className={classes.textField}
+          id="standard-full-width"
+          style = {{ margin: 8 }}
+          fullWidth
         />
         <TextField
           id="standard-full-width"
