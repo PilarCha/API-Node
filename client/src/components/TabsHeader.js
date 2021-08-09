@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import GetAllUsers from './GetAllUsers.js'
+import CreateUsers from './CreateUsers.js'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,7 +88,7 @@ export default function FullWidthTabs() {
           <GetAllUsers/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          <CreateUsers/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           Item Three
