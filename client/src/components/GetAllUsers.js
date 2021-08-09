@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
-function getAllUsers () {
+function GetAllUsers () {
   const [data, setData] = React.useState(null);
 
   // do this after render
@@ -15,7 +15,7 @@ function getAllUsers () {
     {field:'id', headerName:'ID', width:90},
     {field:'name', headerName:'NAME', width:150, editable:true},
   ]
-  render (
+  return (
     <div style={{ height: 300, width: '100%' }}>
       {data ? (
         <DataGrid
@@ -31,4 +31,4 @@ function getAllUsers () {
 
 }
 
-export default getAllUsers;
+export default GetAllUsers;
