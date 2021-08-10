@@ -19,11 +19,13 @@ function CreateUsers(props) {
   const { value:Name, bind:bindName, reset:resetName } = useInput("");
 
   const classes = useStyles();
-  // const [id, setId, name, setname] = useState("");
-
+  const [ data, setData ] = React.useState(null)
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`submitting ${Id} as well as ${Name}`);
+    // alert(`submitting ${Id} as well as ${Name}`);
+    fetch(`add/${Id}/${Name}`)
+      .then((res) => res.json())
+      .then((data) => setData(data));    
     resetId();
     resetName();
   }
