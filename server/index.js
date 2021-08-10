@@ -22,7 +22,7 @@ app.get('/add/:id/:name', (req,res) => {
         console.log(err.message);
       }
       console.log("New Employee has been added");
-      res.send(`New Employee has been added into the database with ID = ${req.params.id} and Name = ${req.params.name}`)
+      res.json({ID: req.params.id,Name: req.params.name})
     })
   })
 })

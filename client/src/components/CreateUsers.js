@@ -1,19 +1,19 @@
 import TextField from '@material-ui/core/TextField';
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
+function CreateUsers(props) {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
     },
-  },
-}));
+  }));
 
-function CreateUsers() {
   const classes = useStyles();
 
   return (
@@ -33,7 +33,7 @@ function CreateUsers() {
           margin="normal"
         />
         <Button variant="contained" color="primary">
-          Primary
+          Create Life
         </Button>
 
       </div>
