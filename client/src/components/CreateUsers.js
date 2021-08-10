@@ -1,5 +1,5 @@
 import TextField from '@material-ui/core/TextField';
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -14,7 +14,18 @@ function CreateUsers(props) {
     },
   }));
 
+  const { value:Id, bind:bindId, reset:resetId } = useInput("");
+  const { value:Name, bind:bindName, reset:resetName } = useInput("");
+
   const classes = useStyles();
+  // const [id, setId, name, setname] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`submitting ${Id} as well as ${Name}`);
+    resetId();
+    resetName();
+  }
 
   return (
     <div className={classes.root}>
@@ -22,17 +33,22 @@ function CreateUsers(props) {
         <TextField
           label="Users ID"
           id="standard-full-width"
+          {...bindId}
           style = {{ margin: 8 }}
           fullWidth
         />
         <TextField
-          id="standard-full-width"
           label="Full Name"
-          style={{ margin: 8 }}
+          id="standard-full-width"
+          {...bindName}
+          style = {{ margin: 8 }}
           fullWidth
-          margin="normal"
         />
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+        >
           Create Life
         </Button>
 
