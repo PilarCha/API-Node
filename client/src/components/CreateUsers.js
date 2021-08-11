@@ -5,15 +5,13 @@ import { useInput } from '../hooks/input-hook';
 import SimpleSnackbar from './SimpleSnackbar'
 
 function CreateUsers(props) {
-
+  //uses a custom Hook. Incorporates the setting of value with reset as well
   const { value:Id, bind:bindId, reset:resetId } = useInput("");
   const { value:Name, bind:bindName, reset:resetName } = useInput("");
-
+  // i used this to keep track of the data once received from the database
   const [ data, setData ] = React.useState(null)
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // alert(`submitting ${Id} as well as ${Name}`);
+  const handleSubmit = () => {
     fetch(`add/${Id}/${Name}`)
       .then((res) => res.json())
       .then((data) => setData(data));
