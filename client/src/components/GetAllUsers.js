@@ -11,11 +11,11 @@ function GetAllUsers () {
       .then((data) => setData(data));
   }, []);
 
-  
   const columns = [
     {field:'id', headerName:'ID', width:90},
     {field:'name', headerName:'NAME', width:150, editable:true},
   ]
+
   return (
     <div style={{ height: 300, width: '100%' }}>
       {data ? (
@@ -31,7 +31,6 @@ function GetAllUsers () {
       )}
     </div>
   )
-
 }
 
 export default GetAllUsers;
