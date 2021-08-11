@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useInput } from '../hooks/input-hook';
+import SimpleSnackbar from './SimpleSnackbar'
 
 function CreateUsers(props) {
   const useStyles = makeStyles((theme) => ({
@@ -19,13 +20,15 @@ function CreateUsers(props) {
   const { value:Name, bind:bindName, reset:resetName } = useInput("");
 
   const classes = useStyles();
+
   const [ data, setData ] = React.useState(null)
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // alert(`submitting ${Id} as well as ${Name}`);
     fetch(`add/${Id}/${Name}`)
       .then((res) => res.json())
-      .then((data) => setData(data));    
+      .then((data) => setData(data));
     resetId();
     resetName();
   }
@@ -54,7 +57,11 @@ function CreateUsers(props) {
         >
           Create Life
         </Button>
-
+        {data ? (
+          <SimpleSnackbar/>
+        ) : (
+          null
+        )}
       </div>
     </div>
   );
