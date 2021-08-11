@@ -76,7 +76,6 @@ export default function FullWidthTabs() {
         >
           <Tab label="View All Users" {...a11yProps(0)} />
           <Tab label="Create Users" {...a11yProps(1)} />
-          <Tab label="Delete Users" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -89,9 +88,6 @@ export default function FullWidthTabs() {
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <CreateUsers/>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
         </TabPanel>
       </SwipeableViews>
     </div>

@@ -11,6 +11,7 @@ function GetAllUsers () {
       .then((data) => setData(data));
   }, []);
 
+  
   const columns = [
     {field:'id', headerName:'ID', width:90},
     {field:'name', headerName:'NAME', width:150, editable:true},
@@ -22,6 +23,8 @@ function GetAllUsers () {
           rows={data}
           columns={columns}
           pageSize={7}
+          checkboxSelection
+          disableSelectionOnClick
         />
       ) : (
         <p> Loadiiiing </p>
