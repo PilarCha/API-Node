@@ -84,8 +84,6 @@ app.get('/del/:id', (req,res) => {
   })
 })
 
-
-
 server.listen(4000,function() {
   console.log('Server listening on port:4000')
 })
